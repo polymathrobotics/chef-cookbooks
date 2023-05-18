@@ -81,7 +81,10 @@ include_recipe 'fb_systemd::journal-gatewayd'
 include_recipe 'fb_systemd::journal-remote'
 include_recipe 'fb_systemd::journal-upload'
 include_recipe 'fb_systemd::logind'
-include_recipe 'fb_systemd::networkd'
+# MT 2023-05-18 Don't try to manage networking in a container
+unless node.container?
+  include_recipe 'fb_systemd::networkd'
+end
 include_recipe 'fb_systemd::resolved'
 include_recipe 'fb_systemd::timesyncd'
 include_recipe 'fb_systemd::boot'

@@ -79,7 +79,8 @@ include_recipe 'fb_limits'
 include_recipe 'fb_hostconf'
 include_recipe 'fb_sysctl'
 # HERE: networking
-include_recipe 'fb_users'
+# MT 2023-05-18 Requires FB::Users::UID_MAP/GID_MAP to be defined
+# include_recipe 'fb_users'
 if node.centos?
   # We turn this off because the override causes intermittent failures in
   # Travis when rsyslog is restarted
